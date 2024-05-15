@@ -126,13 +126,13 @@ print("-" * 20 + "Ranking Scores" + "-" * 20)
 
 # Rank descriptions based on normalized scores
 ranked_descriptions = [
-    (desc, score) for desc, score in zip(descriptions, normalized_scores)
+    (desc, score, score2) for desc, score, score2 in zip(descriptions, normalized_scores, adjusted_scores)
 ]
 ranked_descriptions.sort(key=lambda x: x[1], reverse=True)
 
 # Print ranked descriptions
-for desc, score in ranked_descriptions[:10]:
+for desc, score, score2 in ranked_descriptions[:10]:
     if score > 0.5:
         spell_name = desc.split("~")[0]
         formatted_score = "{:.2f}".format(score)
-        print(f"Normalized Similarity Score: {formatted_score}, Name: {spell_name} ")
+        print(f"Normalized Similarity Score: {formatted_score}, Raw Score: {score2}, Name: {spell_name} ")
